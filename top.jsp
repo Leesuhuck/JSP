@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<style>
+a {
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Playball&display=swap');
+font-family: 'Nanum Pen Script', cursive;
+font-family: 'Playball', cursive;
+}
+</style>
 <%
 	String id = null;
 	id = (String) session.getAttribute("id");

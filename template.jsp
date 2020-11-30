@@ -31,7 +31,7 @@
 			<jsp:include page="left.jsp"></jsp:include>
 		</td>
 		<td colspan=2 align=center>
-			<jsp:include page='<%=pagefile%>'/>
+			<jsp:include page='<%=pagefile %>'></jsp:include>
 		</td>
 	</tr>
 	<tr>
