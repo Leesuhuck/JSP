@@ -46,52 +46,6 @@
 	button{
 	float : right;
 	}
-	.section input[id*="slide"]{
-		display:none;
-	}
-	.section .slidwrap {
-		max-width:600px;
-		margin: 0 auto;
-		overflow:hidden;
-	}
-	.section .slidelist {
-		white-space:nowrap;
-		font-size:0;
-	}
-	.section .slidelist > li {
-		display: inline-block;
-		vertical-align:middle;
-		width:100%;
-		transition:all .Ss;
-	}
-	.section .slidelist > li > a {
-		display:block;
-		position:relative;
-	}
-	.section .slidelist > li > a img {
-		width:100%;
-	}
-	.section .slidelist label {
-		position:absolute;
-		z-index:10;
-		top:50%;
-		transform:translateY(-50%);
-		padding:50px;
-		cursor:pointer;
-	}
-	.section .slidelist .left {
-		left:30px;
-		background:url('pot/안드로이드.jpg') center center / 100% no-repeat;
-	}
-	.section .slidelist .right {
-		right:30px;
-		background:url('pot/애플.jpg') center center / 100% no-repeat;
-	}
-	
-	.section [id="slide1"]:checked ~ .slidewrap .slidelist > li {transform:translateX(0%);}
-	.section [id="slide2"]:checked ~ .slidewrap .slidelist > li {transform:translateX(100%);}
-	.section [id="slide3"]:checked ~ .slidewrap .slidelist > li {transform:translateX(-200%);}
-	
 </style>
 </head>
 <body>
@@ -127,8 +81,8 @@
 		</td>
 	</tr>
 	<tr>
-		<td class=jun>현 상황</td>
-		<td class=ap>아직 자바도 제대로 못다루는 노력인 입니다;</td>
+		<td class=jun>학번</td>
+		<td class=ap>A-1804100283</td>
 	</tr>
 </table>
 	  <div class="container">
@@ -140,35 +94,5 @@
       document.getElementById("img").src = "sub.jpg";
     }
   </script>
- <div class="section">
- 	<input type="radio" name="slide" id="slide1" checked/>
- 	<input type="radio" name="slide" id="slide2"/>
- 	<input type="radio" name="slide" id="slide3"/>
-	<div class="slidewrap">
-	 	<ul class="slidelist">
-	 		<li>
-	 			<a>
-	 				<label for="slide2" class="left"></label>
-	 				<img src="pot/안드로이드.jpg"/>
-	 				<label for="slide3" class="right"></label>
-	 			</a>
-	 		</li>
-	 		<li>
-	 			<a>
-	 				<label for="slide1" class="left"></label>
-	 				<img src="pot/애플.jpg"/>
-	 				<label for="slide3" class="right"></label>
-	 			</a>
-	 		</li>
-	 		<li>
-	 			<a>
-	 				<label for="slide2" class="left"></label>
-	 				<img src="pot/cat.jpg"/>
-	 				<label for="slide1" class="right"></label>
-	 			</a>
-	 		</li>
-		</ul>
-	</div>
-</div>
 </body>
 </html>

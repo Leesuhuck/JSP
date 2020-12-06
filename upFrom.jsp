@@ -91,7 +91,7 @@
 		<tr>
 			<td colspan="2">
 			<a href="javascript:upform.submit()">정보수정</a>&nbsp;&nbsp;
-			<a href=#>탈퇴</a>
+			<a href="./template.jsp?page=delete.jsp?id=<%=id%>">탈퇴</a>
 			</td>
 		</tr>
 	</table>

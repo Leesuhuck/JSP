@@ -1,0 +1,21 @@
+create table member (
+	id varchar(15),
+	password varchar(20),
+	name varchar(10),
+	age int,
+	gender varchar(5),
+	email varchar(30),
+	primary key(id)
+);
+
+show tables;
+desc member;
+
+insert into member values('aaa','1111','길동이',17,'male','111@naver.com');
+insert into member values('abb','1112','길흥국',78,'male','112@naver.com');
+insert into member values('abc','1113','길동삼',12,'male','113@naver.com');
+insert into member values('bca','1114','길동사',13,'male','114@naver.com');
+insert into member values('baa','1115','길동일',18,'male','115@naver.com');
+
+select * from member;
+update member set gender='남자' where gender="male";

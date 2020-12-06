@@ -54,7 +54,7 @@
 			</tr>
 			<tr>
 				<td>비밀번호 : </td>
-				<td><input type="password" name="pass" id="pass"></td>
+				<td><input type="password" name="pass" id="pw"></td>
 			</tr>
 			<tr>
 				<td>이름 :</td>

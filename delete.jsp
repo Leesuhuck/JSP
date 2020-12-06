@@ -1,27 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import= "java.sql.*" %>
-<%
-	Connection conn = null; //연결된 DB객체를 잡고 있는 객체변수
-	PreparedStatement ps = null; //SQL문을 실행시키는 동작을 하는 객체
-	
-	
-	String driver="com.mysql.jdbc.Driver";
-	String url = "jdbc:mysql://localhost:3306/method?serverTimezone=UTC";
-	String id = request.getParameter("id");
-	try{
-		Class.forName(driver);
-		conn = DriverManager.getConnection(url,"root","1111");
-		String sql = "delete from member where id = ? ";
-		ps = conn.prepareStatement(sql);
-		ps.setString(1, id);
-		int a = ps.executeUpdate();
-		response.sendRedirect("memberSelect.jsp");
-	
-	}catch(Exception e) {
-		e.printStackTrace();
-	}
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,6 +7,19 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<%
+	String id = request.getParameter("id");	
+%>
+	<h3>탈퇴를 위해 패스워드를 입력하세요</h3>
+	<form action="delProcess.jsp" method="post">
+	
+		<!-- 사용자 모르게 가져오는 타입 hidden -->
+		<input type="hidden" name="id" value="<%=id%>"/>
+		<input type="password" name="pass"/>
+		<input type="submit" value="탈퇴신청"/>
+		
+		<!-- 이전페이지 histroy.back() -->
+		<input type="button" value="취소" onClick="history.back()"/>
+	</form>
 </body>
 </html>

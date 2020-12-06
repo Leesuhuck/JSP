@@ -39,7 +39,7 @@ table {
 		<h1 style = "color:#F6CED8">MacBook Style</h1>
 	</div>
 </div>
-<form name="loginform" action="loginProcess.jsp" method="post">
+<form name="loginForm" action="loginProcess.jsp" method="post">
 	<table>
 		<tr>
 			<td colspan="2" class="td_title">로그인페이지</td>
@@ -53,7 +53,7 @@ table {
 			<td><input type="password" name="pass" id="pass" /></td>
 		</tr>
 		<tr>
-			<td colspan="2"><a href="javascript:loginform.submit()">로그인</a>&nbsp;&nbsp;
+			<td colspan="2"><a href="javascript:loginForm.submit()">로그인</a>&nbsp;&nbsp;
 				<a href="./template.jsp?page=joinForm.jsp">회원가입</a></td>
 		</tr>
 	</table>
