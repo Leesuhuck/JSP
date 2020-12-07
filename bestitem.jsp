@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*"%>
+<%@ page import="javax.sql.*"%>
+<%@ page import="javax.naming.*"%>
 <html>
 <head>
 <style type="text/css">
@@ -21,6 +24,23 @@
 </style>
 </head>
 <body>
+<%
+	Connection conn = null;
+	PreparedStatement ps = null;
+	ResultSet rs = null;
+
+	try {
+
+		Context init = new InitialContext();
+		DataSource ds = (DataSource) init.lookup("java:comp/env/jdbc/method");
+		conn = ds.getConnection();
+		String sql ="select * from product order by p_readCount desc limit 10"; 
+		//"select * from product where p_readCount > 100";
+		
+		ps = conn.prepareStatement(sql);
+		rs = ps.executeQuery();
+	%>
+	
 <div class = "row">
 	<div class = "column text-center">
 		<h2 style = "color:#9FF781">인기상품 목록입니다.</h2>
@@ -37,33 +57,43 @@
 	</div> 
 </div>
 
-<div class = "row small-up-2 medium-up-3">
-	<div class="column column-block">
-		<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6QIw-zi7ec8ERdQCY6WA2SCCLZdDrw3TaCwcq8TLKTr_6DkGfGs3Rg4lkHio&usqp=CAc.it/200x200" alt="16형 MacBook Pro">&nbsp;&nbsp;&nbsp;
-		<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRV1NBS2F0kScmgfXj0L6zI3_qIkM66vDoANY6DrHaAa2tOGqKP_XUROdwCtFzXBkmIyfaFWFZp&usqp=CAc.it/200x200" alt="MacBook Pro 2.3GHZ">&nbsp;&nbsp;&nbsp;
-		<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmTuH7eKCQOaqsIO3rAhcB-48RxMGnfgKuNl1LbJbmQd-_lLc7jhTEiOZMPW09JORsU68Nhx3X&usqp=CAc.it/200x200" alt="MacBook pro 13형">
-	</div>
-	<div class="column column-block">
-		<img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQonBbYQcLFqvDirbb0Vb6WkYMkDx5HENoP4f-YP66TgvAWLR0x8ENJ5RR4w9c8YgblEltFynF8RYWnNXwENmhMeEIr6nFqrHjiPzQ-9U0IyBU8wFGpnIeM&usqp=CAE.it/200x200" alt="Buy MacBook Pro">&nbsp;&nbsp;&nbsp;
-		<img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRlvnHX93muM_UjvUyptJuY6t5bUsr_5p7uop6xeYbPscfZl12okcfLgllmt076pWzmm0khfUO-v4SQG_KPuBb9gxT3doCVj6-trbTgvpHp7ZZBvk2QUx5i9A&usqp=CAE.it/200x200" alt="Mac Book 13 Apple 2020">&nbsp;&nbsp;&nbsp;
-		<img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTwoHC-Wp9VtfrbsySQzILrQz8zeaxGRQjkjZlJ4uuMvKtVev7sh3ZD754NLuRRQSXfKYtgPQUAd5EajG-CswrdbYqK2TiEMeEwjBydjN5gl9jOlGP8tiaJ3Q&usqp=CAE.it/200x200" alt="Apple MacBook Retina pro 15">
-	</div>
-	<div class="column column-block">
-		<img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcS5Jp7lc1azbluAoKS_96_u_bk2BjVVZOsfk_NVlbOkkZhKedd-lgUUb-39TLZo1Hk15QjVNbzBUwTTwwuOzH5Cq6LO440QjaWyO-8Mx5Qk9vy17xb4XgO1Stg&usqp=CAE.it/200x200" alt="Apple MacBook pro Tuchba">&nbsp;&nbsp;&nbsp;
-		<img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRf63HwrwhljLRC2KJ9ZpWJKjRt2nBEOordOUZu35BFZZ-71JROHYZIVisBi_mnBDc8ga9goPtUFNZvqJhOB0R0f_xjD-QxUPEphAezXl0rhLjHBEJMZrUHWVc&usqp=CAE.it/200x200" alt="Apple 2020 MacBook 13 core i7">&nbsp;&nbsp;&nbsp;
-		<img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSSegYeSIMz580oRhruAGfVa1JDb2E_1QulyFzWLrGpsAE6-4X-Mv0H-EQ179QU4ybpOY1M49zZ0mHLU-Y_iGYJ_bzpj_oL8ycKPH-QAwf_wuAenH2d20Z9&usqp=CAE.it/200x200" alt="MacBookPro 16">
-	</div>
-</div>
-
-<div class = "row">
-	<div class = "column">
-		<div class="menu-centered">
-			<a href="https://search.shopping.naver.com/search/all?query=Apple+Macbook&cat_id=&frm=NVSHATC"><img src="다운로드.png" alt=""></a>
-			<a href="https://www.google.com/search?q=Apple+Macbook&tbm=shop&sxsrf=ALeKk00KQM8UcetxM3tFXtlNGC72lai5Ug:1606734802772&source=lnms&sa=X&ved=0ahUKEwjgkqvJkartAhWS-mEKHVVyDBAQ_AUIESgD&biw=958&bih=959&dpr=1#spd=0"><img src="Google.jpg" alt=""></a>
-			<a href="https://www.youtube.com/results?search_query=Apple+Macbook"><img src="youtube.png" alt=""></a>
-		</div>
-	</div>
-</div>
+<table id="display1">	
+		<tr class = "row small-up-2 medium-up-3">
+	<%	int cnt = 0;	
+		while (rs.next()){
+		cnt ++;  
+%>
+			<td id = "td_style">			
+			 	<p><img src="./MacBook/<%=rs.getString("p_fileName")%>">
+				<h3><%=rs.getString("p_name")%></h3>				
+				<p><%=rs.getString("p_unitPrice")%>원
+				<p><a href="./template.jsp?page=products.jsp?id=<%=rs.getString("p_id")%>">상세 정보 &raquo;</a>
+			</td>
+<% 
+			if(cnt% 5==0){ 
+				cnt=0;
+%>
+		</tr>
+		<tr>
+		<%					}
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					finally {
+			
+					if (rs != null)
+						rs.close();
+				
+					if (ps != null)
+						ps.close();
+				
+					if (conn != null)
+						conn.close();
+					}
+			%>
+		</tr>
+	</table>	
 </body>
 
 </html>

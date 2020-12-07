@@ -24,7 +24,7 @@
 		Context cp = new InitialContext();
 		DataSource ds = (DataSource) cp.lookup("java:comp/env/jdbc/method");
 		conn = ds.getConnection();
-		prep = conn.prepareStatement("INSERT INTO product VALUES (?,?,?,?,?,?,?,?,?,0)");
+		prep = conn.prepareStatement("update product set p_id=?, p_name=?, p_untiPrice=?, p_descript=?, p_category=?, p_manufact, p_unitsStock, condition, p_fileName,where p_id = ?");
 		
 		prep.setString(1, p_id);
 		prep.setString(2, p_name);
@@ -40,11 +40,13 @@
 		
 		if(a != 0) {
 			out.println("<script>");
-			out.println("location.href='./template.jsp?page=addProcess.jsp'");
+			out.println("location.href='./template.jsp?page=updateProcess.jsp'");
+			out.println("alert('수정이 완료되었습니다!')");
 			out.println("</script>");
 		}else {
 			out.println("<script>");
-			out.println("location.href='./template.jsp?page=adminPage.jsp'");
+			out.println("location.href='./template.jsp?page=update.jsp'");
+			out.println("alert('수정이 실패되었습니다!')");
 			out.println("</script>");
 		}
 		

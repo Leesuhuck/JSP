@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <html>
 <head>
-<title>상품 등록</title>
+<title>상품 수정</title>
 <style type="text/css">
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Playball&display=swap');
 	body {
@@ -19,22 +19,6 @@
 		font-family: 'Nanum Pen Script', cursive;
 		font-family: 'Playball', cursive;
 	}
-table {
-	margin: auto;
-	width: 500px;
-	border: 1px solid gray;
-	text-align: center;
-	color:#FE2EF7;
-	font-family: 'Nanum Pen Script', cursive;
-	font-family: 'Playball', cursive;
-}
-.td_title {
-	font-weight: bold;
-	font-size: x-large;
-	color:#FE2EF7;
-	font-family: 'Nanum Pen Script', cursive;
-	font-family: 'Playball', cursive;
-}
 </style>
 </head>
 <body>	
@@ -49,7 +33,8 @@ table {
 	</div>	
 
 	<div>		
-		<form name="newProduct" action="addProcess.jsp"  method="post" 
+		<H2> 상품 수정 관리자 </H2>
+		<form name="newupdate" action="updateProcess.jsp"  method="get" 
 		enctype="multipart/form-data">
 		<table>
 			<tr>
@@ -84,7 +69,7 @@ table {
 				<td><label>제품상태</label>				
 				<td><input type="radio" name="condition" value="new">신상품
 				<input type="radio" name="condition" value="old">중고상품
-				<input type="radio" name="condition" value="refur">리퍼상품	</td>			
+				<input type="radio" name="condition" value="refur">리퍼상품</td>			
 			</tr>
 			<tr>
 				<td><label>이미지파일</label>		</td>		

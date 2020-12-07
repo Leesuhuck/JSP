@@ -29,7 +29,6 @@
 		
 		if(rs.getString("password").equals(pass)){
 			sql = "update member set name=?, age=?, gender=?, email=?, where id =?";
-			ps=conn.prepareStatement(sql);
 			ps.setString(1,id);
 			ps.setString(2,pass);
 			ps.setString(3,name);

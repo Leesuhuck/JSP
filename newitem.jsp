@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*"%>
+<%@ page import="javax.sql.*"%>
+<%@ page import="javax.naming.*"%>
 <html>
 <head>
 <style type="text/css">
@@ -19,10 +22,28 @@
 		font-family: 'Nanum Pen Script', cursive;
 		font-family: 'Playball', cursive;
 	}
+	#display1{
+	margin : auto;
+	width : 600px;
+}
 </style>
 </head>
 <body>
+<%
+	Connection conn = null;
+	PreparedStatement ps = null;
+	ResultSet rs = null;
 
+	try {
+
+		Context init = new InitialContext();
+		DataSource ds = (DataSource) init.lookup("java:comp/env/jdbc/method");
+		conn = ds.getConnection();
+		String sql = "select * from product where p_condition = 'new'";
+		ps = conn.prepareStatement(sql);
+		rs = ps.executeQuery();
+	%>
+	
 <div class = "row">
 	<div class = "column text-center">
 		<h2 style = "color:#9FF781">신상품 목록입니다.</h2>
@@ -42,34 +63,43 @@
 	</div> 
 </div>
 
-<div class = "row small-up-2 medium-up-3">
-	<div class="column column-block">
-	
-		<img src="MacBook/Note1.jpg" alt="16형 MacBook Pro">&nbsp;&nbsp;&nbsp;
-		<img src="MacBook/Note2.jpg" alt="MacBook Pro 2.3GHZ">&nbsp;&nbsp;&nbsp;
-		<img src="MacBook/Note3.jpg" alt="MacBook pro 13형">
-	</div>
-	<div class="column column-block">
-		<img src="MacBook/Note4.jpg" alt="Buy MacBook Pro">&nbsp;&nbsp;&nbsp;
-		<img src="MacBook/Note5.jpg" alt="Mac Book 13 Apple 2020">&nbsp;&nbsp;&nbsp;
-		<img src="MacBook/Note6.jpg" alt="Apple MacBook Retina pro 15">
-	</div>
-	<div class="column column-block">
-		<img src="MacBook/Note7.jpg" alt="Apple MacBook pro Tuchba">&nbsp;&nbsp;&nbsp;
-		<img src="MacBook/Note8.jpg" alt="Apple 2020 MacBook 13 core i7">&nbsp;&nbsp;&nbsp;
-		<img src="MacBook/Note9.jpg" alt="MacBookPro 16">
-	</div>
-</div>
-
-<div class = "row">
-	<div class = "column">
-		<div class="menu-centered">
-			<a href="https://search.shopping.naver.com/search/all?query=Apple+Macbook&cat_id=&frm=NVSHATC"><img src="다운로드.png" alt=""></a>
-			<a href="https://www.google.com/search?q=Apple+Macbook&tbm=shop&sxsrf=ALeKk00KQM8UcetxM3tFXtlNGC72lai5Ug:1606734802772&source=lnms&sa=X&ved=0ahUKEwjgkqvJkartAhWS-mEKHVVyDBAQ_AUIESgD&biw=958&bih=959&dpr=1#spd=0"><img src="Google.jpg" alt=""></a>
-			<a href="https://www.youtube.com/results?search_query=Apple+Macbook"><img src="youtube.png" alt=""></a>
-		</div>
-	</div>
-</div>
+<table id="display1">	
+		<tr class = "row small-up-2 medium-up-3">
+	<%	int cnt = 0;	
+		while (rs.next()){
+		cnt ++;  
+%>
+			<td id = "td_style">			
+			 	<p><img src="./MacBook/<%=rs.getString("p_fileName")%>">
+				<h3><%=rs.getString("p_name")%></h3>				
+				<p><%=rs.getString("p_unitPrice")%>원
+				<p><a href="./template.jsp?page=products.jsp?p_id=<%=rs.getString("p_id")%>">상세 정보 &raquo;</a>
+			</td>
+<% 
+			if(cnt% 5==0){ 
+				cnt=0;
+%>
+		</tr>
+		<tr>
+		<%					}
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					finally {
+			
+					if (rs != null)
+						rs.close();
+				
+					if (ps != null)
+						ps.close();
+				
+					if (conn != null)
+						conn.close();
+					}
+			%>
+		</tr>
+	</table>	
 </body>
 
 </html>
